@@ -97,8 +97,15 @@ namespace SmartCmdArgs.Logic
 
         private string GetSettingsPath()
         {
+            if ( cmdPackage.RootPath != null && cmdPackage.RootPath != "" )
+            {
+                string filename = Path.GetFileNameWithoutExtension( vsHelper.GetSolutionFilename());
+                filename += ".argscfg.json";
+                filename = Path.Combine( cmdPackage.RootPath, filename );
+                return filename;
+            }
             string slnFilename = vsHelper.GetSolutionFilename();
-            return Path.ChangeExtension(slnFilename, "ArgsCfg.json");
+            return Path.ChangeExtension(slnFilename, "argscfg.json");
         }
 
         public void SaveSettings()
@@ -164,6 +171,11 @@ namespace SmartCmdArgs.Logic
                 string slnFilename = vsHelper.GetSolutionFilename();
                 string jsonFilename = Path.ChangeExtension(slnFilename, "args.json");
 
+                if ( cmdPackage.UniqueConfigFilename != null && cmdPackage.UniqueConfigFilename != "" )
+                {
+                    jsonFilename = cmdPackage.UniqueConfigFilename;
+                }
+
                 if (File.Exists(jsonFilename))
                 {
                     try
@@ -201,6 +213,11 @@ namespace SmartCmdArgs.Logic
             {
                 string slnFilename = vsHelper.GetSolutionFilename();
                 string jsonFilename = Path.ChangeExtension(slnFilename, "args.json");
+
+                if ( cmdPackage.UniqueConfigFilename != null && cmdPackage.UniqueConfigFilename != "" )
+                {
+                    jsonFilename = cmdPackage.UniqueConfigFilename;
+                }
 
                 using (solutionFsWatcher?.TemporarilyDisable())
                 {

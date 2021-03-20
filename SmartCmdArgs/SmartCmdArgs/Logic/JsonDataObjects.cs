@@ -17,18 +17,22 @@ namespace SmartCmdArgs.Logic
         public bool VcsSupportEnabled = true;
         public bool UseSolutionDir = false;
         public bool MacroEvaluationEnabled = true;
+        public string UniqueConfigFilename = "";
+        public string RootPath = "";
 
         public bool IsDefault()
         {
             return VcsSupportEnabled == true
                 && UseSolutionDir == false
-                && MacroEvaluationEnabled == true;
+                && MacroEvaluationEnabled == true
+                && UniqueConfigFilename == ""
+                && RootPath == "";
         }
     }
 
     public class SuoDataJson
     {
-        public int FileVersion = 2;
+        public int FileVersion = 3;
 
         public bool ShowAllProjects;
         public HashSet<Guid> SelectedItems = new HashSet<Guid>();
@@ -40,7 +44,7 @@ namespace SmartCmdArgs.Logic
 
     public class SolutionDataJson
     {
-        public int FileVersion = 2;
+        public int FileVersion = 3;
 
         public List<ProjectDataJson> ProjectArguments = new List<ProjectDataJson>();
     }
@@ -55,7 +59,7 @@ namespace SmartCmdArgs.Logic
 
     public class ProjectDataJsonVersioned : ProjectDataJson
     {
-        public int FileVersion = 2;
+        public int FileVersion = 3;
     }
 
     public class CmdArgumentJson

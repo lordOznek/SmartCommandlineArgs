@@ -11,11 +11,12 @@ namespace SmartCmdArgs
     public class CmdArgsOptionPage : DialogPage
     {
         private bool _useMonospaceFont = false;
-        
-        [Category("General")]
-        [DisplayName("Use Monospace Font")]
-        [Description("If enabled the fontfamily is changed to 'Consolas'.")]
-        [DefaultValue(false)]
+        //private string _uniqueArgsFilename = "";
+
+        [Category( "General" )]
+        [DisplayName( "Use Monospace Font" )]
+        [Description( "If enabled the fontfamily is changed to 'Consolas'." )]
+        [DefaultValue( false )]
         public bool UseMonospaceFont
         {
             get => _useMonospaceFont;
@@ -29,13 +30,32 @@ namespace SmartCmdArgs
             }
         }
 
+        //[Category( "General" )]
+        //[DisplayName( "Unique arguments file" )]
+        //[Description( "All solution arguments are saved in one file." )]
+        //[DefaultValue( "" )]
+        //public string UniqueArgsFilename
+        //{
+        //    get => _uniqueArgsFilename;
+        //    set
+        //    {
+        //        if ( _uniqueArgsFilename != value )
+        //        {
+        //            _uniqueArgsFilename = value;
+        //            UniqueArgsFilenameChanged?.Invoke( this, value );
+        //        }
+        //    }
+        //}
+
         public override void ResetSettings()
         {
             base.ResetSettings();
             
             UseMonospaceFont = false;
+            //UniqueArgsFilename = "";
         }
         
         public event EventHandler<bool> UseMonospaceFontChanged;
+        //public event EventHandler<string> UniqueArgsFilenameChanged;
     }
 }

@@ -11,6 +11,8 @@ namespace SmartCmdArgs.ViewModel
         private bool _vcsSupportEnabled;
         private bool _useSolutionDir;
         private bool _macroEvaluationEnabled;
+        private string _uniqueConfigFilename;
+        private string _rootPath;
 
         public bool VcsSupportEnabled
         {
@@ -51,9 +53,37 @@ namespace SmartCmdArgs.ViewModel
             }
         }
 
+        public string UniqueConfigFilename
+        {
+            get => _uniqueConfigFilename;
+            set 
+            {
+                if ( _uniqueConfigFilename != value )
+                {
+                    _uniqueConfigFilename = value;
+                    UniqueConfigFilenameChanged?.Invoke( this, value );
+                }
+            }
+        }
+
+        public string RootPath
+        {
+            get => _rootPath;
+            set
+            {
+                if ( _rootPath != value )
+                {
+                    _rootPath = value;
+                    RootPathChanged?.Invoke( this, value );
+                }
+            }
+        }
+
         public event EventHandler<bool> VcsSupportEnabledChanged;
         public event EventHandler<bool> UseSolutionDirChanged;
         public event EventHandler<bool> MacroEvaluationEnabledChanged;
+        public event EventHandler<string> UniqueConfigFilenameChanged;
+        public event EventHandler<string> RootPathChanged;
 
         public SettingsViewModel() { }
 
@@ -67,6 +97,8 @@ namespace SmartCmdArgs.ViewModel
             VcsSupportEnabled = other.VcsSupportEnabled;
             UseSolutionDir = other.UseSolutionDir;
             MacroEvaluationEnabled = other.MacroEvaluationEnabled;
+            UniqueConfigFilename = other.UniqueConfigFilename;
+            RootPath = other.RootPath;
         }
     }
 }

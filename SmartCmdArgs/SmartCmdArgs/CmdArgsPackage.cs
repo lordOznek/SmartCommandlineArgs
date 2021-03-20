@@ -81,7 +81,10 @@ namespace SmartCmdArgs
         public bool IsVcsSupportEnabled => ToolWindowViewModel.SettingsViewModel.VcsSupportEnabled;
         private bool IsMacroEvaluationEnabled => ToolWindowViewModel.SettingsViewModel.MacroEvaluationEnabled;
         private bool IsUseMonospaceFontEnabled => GetDialogPage<CmdArgsOptionPage>().UseMonospaceFont;
-        public bool IsUseSolutionDirEnabled => ToolWindowViewModel.SettingsViewModel.UseSolutionDir; 
+        public bool IsUseSolutionDirEnabled => ToolWindowViewModel.SettingsViewModel.UseSolutionDir;
+        public string UniqueConfigFilename => ToolWindowViewModel.SettingsViewModel.UniqueConfigFilename;
+        public string RootPath => ToolWindowViewModel.SettingsViewModel.RootPath;
+        //public string UniqueConfigFilename => GetDialogPage<CmdArgsOptionPage>().UniqueArgsFilename;
 
         // We store the commandline arguments also in the suo file.
         // This is handled in the OnLoad/SaveOptions methods.
@@ -370,6 +373,7 @@ namespace SmartCmdArgs
             vm.MacroEvaluationEnabled = settings.MacroEvaluationEnabled;
             vm.UseSolutionDir = settings.UseSolutionDir;
             vm.VcsSupportEnabled = settings.VcsSupportEnabled;
+            vm.UniqueConfigFilename = settings.UniqueConfigFilename;
         }
 
         private void UpdateCommandsForProject(IVsHierarchy project)
